@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -16,6 +17,9 @@ import android.view.ViewGroup;
  * A simple {@link Fragment} subclass.
  */
 public class RegisterFragment extends Fragment {
+    //    Explicit
+    private boolean aBoolean = true;
+
 
 
     public RegisterFragment() {
@@ -30,6 +34,23 @@ public class RegisterFragment extends Fragment {
         createToolbar();
     }//Main Method
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==R.id.itemUpload) {
+            checkAndUploadvalue();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void checkAndUploadvalue() {
+
+        MyAlert myAlert = new MyAlert(getActivity());
+        if (aBoolean) {
+            myAlert.normalDialog("Non Choose Avatar ?","Please Choose Avartar");
+        }
+
+    }//checkAndUploa
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
