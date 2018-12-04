@@ -154,6 +154,22 @@ public class RegisterFragment extends Fragment {
                 ftpClient.changeDirectory("pu");
                 ftpClient.upload(file,new UoloadListener());
 
+//                Add Value to server
+                MyConstant myConstant = new MyConstant();
+                AddUserToServerThread addUserToServerThread = new AddUserToServerThread(getActivity());
+                addUserToServerThread.execute(nameImagesString,userString,passwordString,
+                        myConstant.getUrlPreAvartar()+nameImagesString,
+                        myConstant.getUrlAddUser());
+
+                String result = addUserToServerThread.get();
+                Log.d("4DecV1", "result ==>" + result);
+
+                if (Boolean.parseBoolean(result)) {
+                    getActivity().getSupportFragmentManager().popBackStack();
+                } else {
+                    myAlert.normalDialog("Cannot Upload","Please try again");
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
                 try {
