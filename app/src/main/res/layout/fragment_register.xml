@@ -46,6 +46,7 @@
 
         <!--Password-->
         <EditText
+            android:id="@+id/edtpassword"
             android:hint="@string/password"
             android:inputType="text"
             android:layout_width="match_parent"

@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 
@@ -50,6 +51,7 @@ public class RegisterFragment extends Fragment {
             aBoolean = false;
             uri = data.getData();
 
+//            Choose Image
             try {
                 Bitmap bitmap = BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(uri));
                 Bitmap bitmap1 = Bitmap.createScaledBitmap(bitmap, 800, 600, false);
@@ -89,11 +91,25 @@ public class RegisterFragment extends Fragment {
     private void checkAndUploadvalue() {
 
         MyAlert myAlert = new MyAlert(getActivity());
+
+//        Get Valur from Edit Text
+        EditText nameEditText = getView().findViewById(R.id.edtName);
+        EditText UserEditText = getView().findViewById(R.id.edtUser);
+        EditText passwordEditText = getView().findViewById(R.id.edtpassword);
+
+        String nameString = nameEditText.getText().toString().trim();
+        String userString = UserEditText.getText().toString().trim();
+        String passwordString = passwordEditText.getText().toString().trim();
+
         if (aBoolean) {
             myAlert.normalDialog("Non Choose Avatar ?","Please Choose Avartar");
+        } else if (nameString.isEmpty() || userString.isEmpty() || passwordString.isEmpty()) {
+            myAlert.normalDialog("Have Space","Please Fill Every Blank");
+        } else {
+
         }
 
-    }//checkAndUploa
+    }//checkAndUpload
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
